@@ -1,0 +1,27 @@
+.site {
+	max-width: 80rem;
+	width: 100%;
+	margin: 0 auto;
+	padding: var(--spacing);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-min-width), 1fr));
+  gap: var(--spacing);
+}
+
+.card {
+	margin: 0;
+}
+
+.card-figure {
+	margin-bottom: .5rem;
+}
+
+.card-title {
+	margin-bottom: 0;
+}
+
+
+

@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+---
+<article class="article">
+	<header class="article-header">
+		<h1>{{title}}</h1>
+	</header>
+
+	<div class="article-content">
+		{{ content | safe }}
+	</div>
+
+	{% for jsfile in jsfiles %}
+		<h3>File: <a href="/{{ jsfile }}">{{ jsfile }}</a></h3>
+		<pre data-src="/{{ jsfile }}"></pre>
+	{% endfor %}
+</article>
+
