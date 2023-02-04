@@ -14,15 +14,16 @@ async function fetchPhotos (endpoint = 'https://vanillajsacademy.com/api/photos.
 }
 
 function getPhotoHTML(photo, type) {
-	console.log(photo);
 	type = ['card', 'single'].includes(type) ? type : 'card';
 	let header = '',
 		href = '',
 		before = '',
-		after = '';
-	let urlObj = new URL(window.location.href);
+		after = '',
+		urlObj = new URL(window.location.href);
+
 	if (type === 'single') {
 		urlObj.search = '';
+		document.title = `${photo.name} | ${document.title}`;
 		href = urlObj.toString();
 		before = `<p><a href="${href}" class="btn" btn--all">All Photos</a></p>`;
 		header = `
@@ -33,6 +34,7 @@ function getPhotoHTML(photo, type) {
 </header>
 		`;
 	}
+
 	if (type === 'card') {
 		urlObj.search = '';
 		let params = urlObj.searchParams;
@@ -68,7 +70,6 @@ function getPhotosHTML (photos) {
 	}
 
 	html += '<div id="photos" class="cards photos">';
-	console.log(photos);
 	for (let photo of photos) {
 		html += getPhotoHTML(photo, 'card');
 	}
