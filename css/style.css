@@ -385,6 +385,13 @@ h6 {
   margin-bottom: 0;
 }
 
+.projects {
+  list-style: none;
+  padding-left: 0;
+  font-weight: 600;
+  font-size: var(--font-size--l);
+}
+
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
