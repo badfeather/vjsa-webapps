@@ -4,28 +4,28 @@
 	<meta charset="utf-8">
 	<title>{{ title }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="/img/favicon.ico" sizes="any">
-	<link rel="icon" href="/img/icon.svg" type="image/svg+xml">
-	<link rel="apple-touch-icon" href="/img/icon.png">
-	<link rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="{{ '/img/favicon.ico' | url }}" sizes="any">
+	<link rel="icon" href="{{ '/img/icon.svg' | url }}" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="{{ '/img/icon.png' | url }}">
+	<link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 	{% for cssfile in cssfiles %}
-			<sink rel="stylesheet" href="/{{ cssfile }}">
+			<sink rel="stylesheet" href="{{ cssfile | url }}">
 		{% endfor %}
 </head>
 
 <body>
 	<div id="site" class="site">
 		<header class="site-header">
-			<p class="site-title"><a href="/">{{ site.title }}</a></p>
+			<p class="site-title"><a href="{{ '/' | url }}">{{ site.title }}</a></p>
 		</header>
 
 		<main class="site-content">
 			{{ content | safe }}
 		</main>
 	</div>
-	<script src="/js/scripts.min.js"></script>
+	<script src="{{ '/js/scripts.min.js' | url }}"></script>
 	{% for jsfile in jsfiles %}
-		<script src="/{{ jsfile }}" defer></script>
+		<script src="{{ jsfile  | url }}" defer></script>
 	{% endfor %}
 </body>
 </html>
