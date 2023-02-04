@@ -14,6 +14,7 @@ async function fetchPhotos (endpoint = 'https://vanillajsacademy.com/api/photos.
 }
 
 function getPhotoHTML(photo, type) {
+	// console.log(photo);
 	type = ['card', 'single'].includes(type) ? type : 'card';
 	let header = '',
 		href = '',
@@ -23,7 +24,6 @@ function getPhotoHTML(photo, type) {
 
 	if (type === 'single') {
 		urlObj.search = '';
-		document.title = `${photo.name} | ${document.title}`;
 		href = urlObj.toString();
 		before = `<p><a href="${href}" class="btn" btn--all">All Photos</a></p>`;
 		header = `
