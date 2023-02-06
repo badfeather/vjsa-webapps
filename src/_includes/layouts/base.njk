@@ -27,5 +27,8 @@
 	{% for jsfile in jsfiles %}
 		<script src="{{ jsfile  | url }}" defer></script>
 	{% endfor %}
+	{% for jsmodule in jsmodules %}
+		<script src="{{ jsmodule  | url }}" type="module"></script>
+	{% endfor %}
 </body>
 </html>

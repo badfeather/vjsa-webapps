@@ -10,9 +10,9 @@ layout: layouts/base.njk
 		{{ content | safe }}
 	</div>
 
-	{% for jsfile in jsfiles %}
-		<h3>File: <a href="{{ jsfile | url }}">{{ jsfile | url }}</a></h3>
-		<pre data-src="{{ jsfile | url }}"></pre>
+	{% for printfile in printfiles %}
+		<p><strong>File:</strong> <a href="{{ printfile | url }}">{{ printfile | url }}</a></p>
+		<pre data-src="{{ printfile | url }}"></pre>
 	{% endfor %}
 </article>
 
