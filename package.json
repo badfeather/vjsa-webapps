@@ -1,6 +1,6 @@
 {
   "name": "vjsa-webapps",
-  "version": "1.0.14",
+  "version": "1.0.22",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,13 +11,14 @@
     "precss": "sass src/sass:src/css",
     "css": "postcss src/css '!src/css/**/*.min.css' '!src/css/**/*.css.map' -u autoprefixer postcss-combine-media-query postcss-sort-media-queries -d src/css --ext .min.css",
     "postcss": "postcss src/css '!src/css/**/*.min.css' '!src/css/**/*.css.map' -u autoprefixer postcss-combine-media-query postcss-sort-media-queries cssnano -d src/css --ext .min.css --no-map",
-    "prejs": "eslint 'src/js/**/*.js'",
+    "copy": "copyfiles -f node_modules/reefjs/dist/reef.es.js src/js/vendor",
+    "prejs": "eslint 'src/js/**/*.js' --ignore-pattern 'src/js/vendor/**/*.js'",
     "js": "rollup -c rollup.config.mjs",
     "watch:css": "chokidar 'src/sass/**/*.scss' -c 'npm run css'",
     "watch:js": "chokidar 'src/js/**/*.js' -c 'npm run js'",
     "watch:eleventy": "eleventy --serve",
     "watch": "run-p watch:*",
-    "build": "run-p js css eleventy",
+    "build": "run-p copy js css eleventy",
     "postbuild": "npm run bump:patch",
     "postinstall": "npm run build"
   },
@@ -30,7 +31,7 @@
     "@jsdevtools/version-bump-prompt": "^6.1.0",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.1.0",
+    "@rollup/plugin-terser": "^0.4.0",
     "autoprefixer": "^10.3.1",
     "chokidar-cli": "^3.0.0",
     "concat": "^1.0.3",
@@ -45,6 +46,7 @@
     "postcss-cli": "^10.0.0",
     "postcss-combine-media-query": "^1.0.1",
     "postcss-sort-media-queries": "^4.1.0",
+    "reefjs": "^12.1.1",
     "rollup": "^3.7.4",
     "sass": "^1.49.7",
     "terser": "^5.10.0"

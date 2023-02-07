@@ -6,8 +6,6 @@ layout: layouts/page.njk
 
 <ul class="projects">
 	{% for post in collections.post %}
-		{% if loop.index0 < 3 %}
-			<li><a href="{{ post.url | url }}">{{ post.data.title }}</a></li>
-		{% endif %}
+		<li><a href="{{ post.url | url }}">{{ post.data.title }}</a></li>
 	{% endfor %}
 </ul>

@@ -1,4 +1,6 @@
+import {render} from './vendor/reef.es.js';
 import fetchPhotos from './components/fetch-photos.js';
+import {getCartItems, addToCart} from './components/cart.js';
 
 function getPhotoHTML (photo, type) {
 	type = ['card', 'single'].includes(type) ? type : 'card';
@@ -18,6 +20,7 @@ function getPhotoHTML (photo, type) {
 	<h2 class="${type}-title">${photo.name}</h2>
 	<div class="${type}-description">${photo.description}</h2>
 	<div class="${type}-price">$${photo.price}</div>
+	<button data-add-to-cart="${photo.id}">Add to cart</button>
 </header>
 		`;
 	}
@@ -64,7 +67,53 @@ function getPhotosHTML (photos) {
 	return html;
 }
 
-let app = document.getElementById('app');
-fetchPhotos('https://vanillajsacademy.com/api/photos.json').then(function (photos) {
-	app.innerHTML = getPhotosHTML(photos);
-});
+function getCartHTML (items) {
+	if (!items || !items.length) return '<p>Cart is empty</p>';
+	let html = '<h2>Cart</h2>';
+	html += '<table class="cart">';
+	let total = 0;
+	for (let item of items) {
+		let photo = item.photo;
+		total += item.totalPrice;
+		html += `
+		<tr>
+			<td item-id="${item.id}"><strong>${photo.name}</strong></td>
+			<td class="item-qty">${item.qty}</td>
+			<td class="item-price">$${item.totalPrice}</td>
+		</tr>
+		`;
+	}
+	html += `
+	<tr>
+		<td colspan="2"><strong>TOTAL</strong></td>
+		<td class="cart-total">$${total}</td>
+	</tr>
+	`;
+	html += '</table>';
+	return html;
+}
+
+let app = document.querySelector('[data-app]');
+let cart = document.querySelector('[data-cart]');
+if (app && cart) {
+	fetchPhotos('https://vanillajsacademy.com/api/photos.json').then(function (photos) {
+		render(app, getPhotosHTML(photos));
+		render(cart, getCartHTML(getCartItems(), photos));
+
+		document.addEventListener('click', function (event) {
+			let btn = event.target.closest('[data-add-to-cart]');
+			if (!btn) return;
+			let id = btn.getAttribute('data-add-to-cart');
+			if (!id) return;
+			let photo = photos.find(function(photo) {
+				return photo.id === id;
+			});
+			addToCart(photo);
+			// cart.innerHTML = getCartHTML(getCartItems());
+			render(cart, getCartHTML(getCartItems()));
+		});
+	});
+}
+
+
+
