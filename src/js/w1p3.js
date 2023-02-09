@@ -1,4 +1,4 @@
-import fetchPhotos from './components/fetch-photos.js';
+import {fetchPhotos} from './components/fetch-photos.js';
 
 function getPhotoHTML (photo, type) {
 	type = ['card', 'single'].includes(type) ? type : 'card';
@@ -65,6 +65,6 @@ function getPhotosHTML (photos) {
 }
 
 let app = document.getElementById('app');
-fetchPhotos('https://vanillajsacademy.com/api/photos.json').then(function (photos) {
+fetchPhotos().then(function (photos) {
 	app.innerHTML = getPhotosHTML(photos);
 });

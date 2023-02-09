@@ -5,7 +5,7 @@ layout: layouts/page.njk
 ---
 
 <ul class="projects">
-	{% for post in collections.post %}
-		<li><a href="{{ post.url | url }}">{{ post.data.title }}</a></li>
+	{% for page in collections.page %}
+		<li><a href="{{ page.url | url }}">{{ page.data.title }}</a></li>
 	{% endfor %}
 </ul>

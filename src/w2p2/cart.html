@@ -1,0 +1,17 @@
+---
+title: Week 2, Project 2 - Cart Count - Cart
+layout: layouts/post.njk
+jsmodules: ['/js/w2p2-cart.js']
+printfiles: ['/js/w2p2-cart.js', '/js/components/fetch-photos.js', '/js/components/cart.js']
+---
+
+<nav class="nav">
+	<a class="logo" href="{{ '/w2p2/' | url }}"><strong>Sparrow Photography</strong></a>
+<div class="nav-items">
+	<a href="{{ '/w2p2/cart/' | url }}"><span aria-hidden="true">&#x1f6d2;</span> Cart</a> <span data-cart-count></span>
+</div>
+</nav>
+
+
+<h2>Cart</h2>
+<div data-app aria-live="polite">No items in cart.</div>

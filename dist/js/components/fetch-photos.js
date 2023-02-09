@@ -16,15 +16,14 @@ function getSavedPhotos () {
 }
 
 
-async function fetchPhotos (endpoint) {
+async function fetchPhotos (endpoint = 'https://vanillajsacademy.com/api/photos.json') {
 	if (!endpoint) return;
 
-	// Check for saved data
 	let saved = getSavedPhotos();
 	if (saved) {
 		return saved;
 	}
-	
+
 	try {
 		let response = await fetch(endpoint);
 		if (!response.ok) throw response;
@@ -38,4 +37,4 @@ async function fetchPhotos (endpoint) {
 	}
 }
 
-export default fetchPhotos;
+export {fetchPhotos};

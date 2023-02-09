@@ -1,0 +1,20 @@
+---
+title: Week 2, Project 2 - Cart Count - Photo
+layout: layouts/post.njk
+jsmodules: ['/js/w2p2-photo.js']
+printfiles: ['/js/w2p2.js', '/js/components/fetch-photos.js', '/js/components/cart.js']
+---
+
+<nav class="nav">
+	<a class="logo" href="{{ '/w2p2/' | url }}"><strong>Sparrow Photography</strong></a>
+<div class="nav-items">
+	<a href="{{ '/w2p2/cart/' | url }}"><span aria-hidden="true">&#x1f6d2;</span> Cart</a> <span data-cart-count></span>
+</div>
+</nav>
+
+<p><a href="{{ '/w2p2/' | url }}" class="btn" btn--all">All Photos</a></p>
+<div data-app aria-live="polite">Loading...</div>
+
+<footer>
+	<p><em>Photos by Jack Sparrow. All rights reserved.</em></p>
+</footer>

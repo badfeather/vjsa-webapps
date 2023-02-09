@@ -1,8 +1,14 @@
+body {
+}
 .site {
 	max-width: 80rem;
 	width: 100%;
 	margin: 0 auto;
 	padding: var(--spacing);
+}
+
+.nav {
+	margin-bottom: var(--spacing);
 }
 
 .cards {

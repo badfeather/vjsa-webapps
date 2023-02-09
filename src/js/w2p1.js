@@ -1,6 +1,6 @@
 import {render} from './vendor/reef.es.js';
-import fetchPhotos from './components/fetch-photos.js';
-import {getCartItems, addToCart} from './components/cart.js';
+import {fetchPhotos} from './components/fetch-photos.js';
+import {getCartData, addToCart} from './components/cart.js';
 
 function getPhotoHTML (photo, type) {
 	type = ['card', 'single'].includes(type) ? type : 'card';
@@ -67,38 +67,51 @@ function getPhotosHTML (photos) {
 	return html;
 }
 
-function getCartHTML (items) {
+function getCartHTML () {
+	let cartTotalPrice = 0,
+		cartTotalQty = 0,
+		items = getCartData();
 	if (!items || !items.length) return '<p>Cart is empty</p>';
-	let html = '<h2>Cart</h2>';
-	html += '<table class="cart">';
-	let total = 0;
+	let html = `
+	<table class="cart">
+		<tr>
+			<th>Photo</th>
+			<th>Cost per unit</th>
+			<th>Quantity</th>
+			<th>Price</th>
+		</tr>
+	`;
 	for (let item of items) {
-		let photo = item.photo;
-		total += item.totalPrice;
+		let rowPrice = item.photo.price * item.qty;
+		cartTotalPrice += rowPrice;
+		cartTotalQty += item.qty;
 		html += `
 		<tr>
-			<td item-id="${item.id}"><strong>${photo.name}</strong></td>
+			<td class="item-name"><strong>${item.photo.name}</strong></td>
+			<td class="item-cost-per-unit">$${item.photo.price}</td>
 			<td class="item-qty">${item.qty}</td>
-			<td class="item-price">$${item.totalPrice}</td>
+			<td class="item-price">$${rowPrice}</td>
 		</tr>
 		`;
 	}
 	html += `
-	<tr>
-		<td colspan="2"><strong>TOTAL</strong></td>
-		<td class="cart-total">$${total}</td>
-	</tr>
+		<tr class="cart-totals">
+			<td><strong>TOTAL</strong></td>
+			<td></td>
+			<td class="total-qty">${cartTotalQty}</td>
+			<td class="cart-total">$${cartTotalPrice}</td>
+		</tr>
+	</table>
 	`;
-	html += '</table>';
 	return html;
 }
 
 let app = document.querySelector('[data-app]');
 let cart = document.querySelector('[data-cart]');
 if (app && cart) {
-	fetchPhotos('https://vanillajsacademy.com/api/photos.json').then(function (photos) {
+	fetchPhotos().then(function (photos) {
 		render(app, getPhotosHTML(photos));
-		render(cart, getCartHTML(getCartItems(), photos));
+		render(cart, getCartHTML(getCartData(), photos));
 
 		document.addEventListener('click', function (event) {
 			let btn = event.target.closest('[data-add-to-cart]');
@@ -109,8 +122,7 @@ if (app && cart) {
 				return photo.id === id;
 			});
 			addToCart(photo);
-			// cart.innerHTML = getCartHTML(getCartItems());
-			render(cart, getCartHTML(getCartItems()));
+			render(cart, getCartHTML());
 		});
 	});
 }
