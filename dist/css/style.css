@@ -46,7 +46,21 @@
   --card-min-width: 16rem;
 }
 
+* {
+  box-sizing: border-box;
+}
+*:before, *:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-color-highlight: rgba(0, 0, 0, 0);
   font-size: 100%;
 }
 
@@ -56,7 +70,20 @@ body {
   line-height: var(--line-height);
   color: var(--color);
   font-family: var(--font-family);
-  overflow: hidden;
+  width: 100%;
+}
+
+main {
+  display: block;
+}
+
+template {
+  display: none;
+}
+
+.hidden,
+[hidden] {
+  display: none;
 }
 
 p,
