@@ -1,37 +1,49 @@
+import {store, component} from '../vendor/reef.es.js';
+
 /**
  * Get saved cart data from session storage
  * @return {Array} The cart data
  */
-function getCartItems () {
-	return JSON.parse(localStorage.getItem('cartItems'));
+function getCartData () {
+	return JSON.parse(localStorage.getItem('cartItems')) || [];
 }
 
 /**
  * Save cart to session storage
  * @param  {Array} cartData The photo data
  */
-function addToCart (photo, qty = 1) {
-	let items = getCartItems();
+function addToCart (photo, qty = 1, items = getCartData()) {
 	items = items ? items : [];
-	console.log(items);
 	let match = items.find(function(item) {
 		return item.photo.id === photo.id;
 	});
-	console.log(match);
 	if (match) {
 		let newQty = match.qty + qty;
 		match.qty = newQty;
-		match.totalPrice = newQty * photo.price;
 
 	} else {
 		items.push({
 			"photo": photo,
-			"qty": qty,
-			"totalPrice": qty * photo.price
+			"qty": qty
 		});
 	}
 	localStorage.setItem('cartItems', JSON.stringify(items));
 }
 
-export {addToCart, getCartItems};
+let cartData = store(getCartData());
+
+function getCartCountHTML () {
+	if (!cartData.length) return;
+	let total = 0;
+	for (let item of cartData) {
+		console.log(item.qty);
+		total += item.qty;
+	}
+	return total;
+}
+
+let count = document.querySelector('[data-cart-count]');
+if (count) component(count, getCartCountHTML);
+
+export {addToCart, getCartData};
 
