@@ -6,13 +6,13 @@ printfiles: ['/js/w2p2.js', '/js/components/fetch-photos.js', '/js/components/ca
 ---
 
 <nav class="nav">
-	<a class="logo" href="{{ '/w2p2/' | url }}"><strong>Sparrow Photography</strong></a>
-<div class="nav-items">
-	<a href="{{ '/w2p2/cart/' | url }}"><span aria-hidden="true">&#x1f6d2;</span> Cart</a> <span data-cart-count></span>
-</div>
+	<p><a class="logo" href="{{ '/w2p2/' | url }}"><strong>Sparrow Photography</strong></a></p>
+	<div class="nav-items">
+		<a class="btn" href="{{ '/w2p2/cart/' | url }}">Cart</a> <span data-cart-count aria-live="polite"></span>
+	</div>
 </nav>
 
-<p><a href="{{ '/w2p2/' | url }}" class="btn" btn--all">All Photos</a></p>
+<p><a href="{{ '/w2p2/' | url }}">&larr; All Photos</a></p>
 <div data-app aria-live="polite">Loading...</div>
 
 <footer>
