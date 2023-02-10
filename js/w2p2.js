@@ -5,7 +5,6 @@ import './components/cart.js';
 let photos = [];
 
 function getPhotosHTML () {
-	console.log(photos);
 	if (!photos.length) return '<p>Error retrieving photos.</p>';
 	let html = '<div id="photos" class="cards photos">';
 	for (let photo of photos) {
@@ -27,6 +26,5 @@ fetchPhotos().then(function (data) {
 	photos = data;
 	let app = document.querySelector('[data-app]');
 	if (!app) return;
-	console.log('here');
 	render(app, getPhotosHTML());
 });

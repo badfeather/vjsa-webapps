@@ -24,7 +24,6 @@ function getPhotoHTML () {
 	let photo = getPhotoByID(photos, id);
 	if (!photo) return getErrorHTML();
 	document.title = `${photo.name} | ${document.title}`;
-
 	return `
 <article id="${photo.id}" class="single">
 	<figure class="photo-figure">
@@ -32,13 +31,14 @@ function getPhotoHTML () {
 	</figure>
 	<header>
 		<h2>${photo.name}</h2>
-		<div class="photo-description">${photo.description}</h2>
-		<div class="photo-price">$${photo.price}</div>
-		<button data-add-to-cart="${photo.id}">Add to cart</button>
+		<p class="photo-description">${photo.description}</p>
+		<p class="photo-price">$${photo.price}</p>
+		<p><button data-add-to-cart="${photo.id}">Add to cart</button></p>
 	</header>
 </article>
 	`;
 }
+
 
 function addToCartClickHandler (event) {
 	let btn = event.target.closest('[data-add-to-cart]');

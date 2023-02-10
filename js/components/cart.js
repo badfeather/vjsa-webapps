@@ -33,8 +33,8 @@ function addToCart (photo, qty = 1, items = getCartData()) {
 let cartData = store(getCartData());
 
 function getCartCountHTML () {
-	if (!cartData.length) return;
 	let total = 0;
+	if (!cartData.length) return total;
 	for (let item of cartData) {
 		console.log(item.qty);
 		total += item.qty;

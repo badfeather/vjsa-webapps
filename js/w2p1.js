@@ -18,8 +18,8 @@ function getPhotoHTML (photo, type) {
 		header = `
 <header class="${type}-header">
 	<h2 class="${type}-title">${photo.name}</h2>
-	<div class="${type}-description">${photo.description}</h2>
-	<div class="${type}-price">$${photo.price}</div>
+	<p class="${type}-description">${photo.description}</p>
+	<p class="${type}-price">$${photo.price}</p>
 	<button data-add-to-cart="${photo.id}">Add to cart</button>
 </header>
 		`;
