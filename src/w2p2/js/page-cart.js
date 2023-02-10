@@ -1,4 +1,4 @@
-import {store, component} from './vendor/reef.es.js';
+import {store, component} from '../../js/vendor/reef.es.js';
 import {getCartData} from './components/cart.js';
 
 let cartItems = store(getCartData());

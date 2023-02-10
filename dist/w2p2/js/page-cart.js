@@ -1,29 +1,11 @@
-import {store, component} from 'https://cdn.jsdelivr.net/npm/reefjs@12/dist/reef.es.min.js';
+import {store, component} from '../../js/vendor/reef.es.js';
+import {getCartData} from './components/cart.js';
 
-let cartItems = store(JSON.parse(localStorage.getItem('cartItems')) || []);
-
-/**
- * Save cart to session storage
- * @param  {Array} cartData The photo data
- */
-function addToCart (photo, qty = 1) {
-	let match = cartItems.find(function(item) {
-		return cartItems.photo.id === item.id;
-	});
-	if (match) {
-		let newQty = match.qty + qty;
-		match.qty = newQty;
-
-	} else {
-		cartItems.push({
-			"photo": photo,
-			"qty": qty
-		});
-	}
-	localStorage.setItem('cartItems', JSON.stringify(cartItems));
-}
+let cartItems = store(getCartData());
 
 function getCartHTML () {
+	if (!cartItems.length) return '<p>No items in cart.</p>';
+
 	let cartTotalPrice = 0,
 		cartTotalQty = 0;
 	let html = `
@@ -51,7 +33,7 @@ function getCartHTML () {
 	html += `
 		<tr class="cart-totals">
 			<td colspan="2"><strong>TOTAL</strong></td>
-			<td class="total-qty>${cartTotalQty} Items</td>
+			<td class="total-qty">${cartTotalQty} Items</td>
 			<td class="cart-total">$${cartTotalPrice}</td>
 		</tr>
 	</table>
@@ -59,8 +41,6 @@ function getCartHTML () {
 	return html;
 }
 
-let cart = document.querySelector('[data-cart]');
-if (cart) component(cart, getCartHTML);
-
-export {addToCart};
+let app = document.querySelector('[data-app]');
+if (app) component(app, getCartHTML);
 

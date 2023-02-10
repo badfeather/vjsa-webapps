@@ -1,6 +1,6 @@
 {
   "name": "vjsa-webapps",
-  "version": "1.0.32",
+  "version": "1.0.38",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "css": "postcss src/css '!src/css/**/*.min.css' '!src/css/**/*.css.map' -u autoprefixer postcss-combine-media-query postcss-sort-media-queries -d src/css --ext .min.css",
     "postcss": "postcss src/css '!src/css/**/*.min.css' '!src/css/**/*.css.map' -u autoprefixer postcss-combine-media-query postcss-sort-media-queries cssnano -d src/css --ext .min.css --no-map",
     "copy": "copyfiles -f node_modules/reefjs/dist/reef.es.js src/js/vendor",
-    "prejs": "eslint 'src/js/**/*.js' --ignore-pattern 'src/js/vendor/**/*.js'",
+    "prejs": "eslint 'src/**/*.js' --ignore-pattern 'src/js/vendor/**/*.js'",
     "js": "rollup -c rollup.config.mjs",
     "watch:css": "chokidar 'src/sass/**/*.scss' -c 'npm run css'",
     "watch:js": "chokidar 'src/js/**/*.js' -c 'npm run js'",

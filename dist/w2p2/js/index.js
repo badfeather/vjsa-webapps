@@ -1,4 +1,4 @@
-import {render} from './vendor/reef.es.js';
+import {render} from '../../js/vendor/reef.es.js';
 import {fetchPhotos} from './components/fetch-photos.js';
 import './components/cart.js';
 
