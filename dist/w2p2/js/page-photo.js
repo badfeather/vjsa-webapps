@@ -1,6 +1,6 @@
-import {store, component} from '../../js/vendor/reef.es.js';
+import {component} from '../../js/vendor/reef.es.js';
 import {fetchPhotos} from './components/fetch-photos.js';
-import {addToCart, getCartData} from './components/cart.js';
+import {addToCart} from './components/cart.js';
 
 let photos = [];
 
@@ -55,19 +55,5 @@ fetchPhotos().then(function (data) {
 	let app = document.querySelector('[data-app]');
 	if (!photos.length || !app) return;
 	component(app, getPhotoHTML);
-
-	let cartData = store(getCartData());
-	function getCartCountHTML () {
-		let total = 0;
-		if (!cartData.length) return total;
-		for (let item of cartData) {
-			console.log(item.qty);
-			total += item.qty;
-		}
-		return total;
-	}
-
-	let count = document.querySelector('[data-cart-count]');
-	if (count) component(count, getCartCountHTML);
 	document.addEventListener('click', addToCartClickHandler);
 });
