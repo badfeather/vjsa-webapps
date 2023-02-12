@@ -1,11 +1,13 @@
 import {store, component} from '../../../js/vendor/reef.es.js';
 
+let storageKey = 'w2p2CartItems';
+
 /**
  * Get saved cart data from session storage
  * @return {Array} The cart data
  */
 function getCartData () {
-	return JSON.parse(localStorage.getItem('cartItems')) || [];
+	return JSON.parse(localStorage.getItem(storageKey)) || [];
 }
 
 /**
@@ -26,7 +28,7 @@ function addToCart (photo, qty = 1) {
 			"qty": qty
 		});
 	}
-	localStorage.setItem('cartItems', JSON.stringify(cartData));
+	localStorage.setItem(storageKey, JSON.stringify(cartData));
 }
 
 let cartData = store(getCartData());

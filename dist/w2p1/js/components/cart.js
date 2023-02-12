@@ -1,9 +1,11 @@
+let storageKey = 'w2p1CartItems';
+
 /**
  * Get saved cart data from session storage
  * @return {Array} The cart data
  */
 function getCartData () {
-	return JSON.parse(localStorage.getItem('cartItems')) || [];
+	return JSON.parse(localStorage.getItem(storageKey)) || [];
 }
 
 /**
@@ -25,7 +27,7 @@ function addToCart (photo, qty = 1, items = getCartData()) {
 			"qty": qty
 		});
 	}
-	localStorage.setItem('cartItems', JSON.stringify(items));
+	localStorage.setItem(storageKey, JSON.stringify(items));
 }
 
 export {addToCart, getCartData};
