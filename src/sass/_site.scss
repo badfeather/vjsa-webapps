@@ -37,4 +37,19 @@ body {
 	font-size: var(--font-size--l);
 }
 
+.cart {
+	th,
+	td {
+		width: 9em;
+	}
+
+	.item-name {
+		width: auto;
+	}
+
+	.item-thumb {
+		width: 100px;
+	}
+}
+
 
