@@ -1,8 +1,6 @@
 import {store, component} from '../../js/vendor/reef.es.js';
 import {getCartData} from './components/cart.js';
 
-let cartItems = store(getCartData());
-
 function getCartHTML () {
 	if (!cartItems.length) return '<p>No items in cart.</p>';
 
@@ -41,6 +39,7 @@ function getCartHTML () {
 	return html;
 }
 
+let cartItems = store(getCartData());
 let app = document.querySelector('[data-app]');
 if (app) component(app, getCartHTML);
 
