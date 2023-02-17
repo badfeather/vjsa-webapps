@@ -594,7 +594,7 @@ input[type=button],
 input[type=reset],
 a[role=button] {
   font-family: var(--font-family);
-  padding: 0.5em 1.125em;
+  padding: 0.5em 1em;
   color: var(--background-color);
   text-align: center;
   text-decoration: none;
@@ -840,6 +840,14 @@ input[type=search] {
 .cart th,
 .cart td {
   width: 9em;
+}
+.cart button {
+  font-size: var(--font-size--xs);
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+}
+.cart .item-qty {
+  width: 15em;
 }
 .cart .item-name {
   width: auto;

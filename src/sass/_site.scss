@@ -43,9 +43,20 @@ body {
 		width: 9em;
 	}
 
+	button {
+		font-size: var(--font-size--xs);
+		margin-left: .25em;
+		margin-right: .25em;
+	}
+
+	.item-qty {
+		width: 15em;
+	}
+
 	.item-name {
 		width: auto;
 	}
+
 
 	.item-thumb {
 		width: 100px;
