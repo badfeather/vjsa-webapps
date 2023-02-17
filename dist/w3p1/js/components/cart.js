@@ -1,6 +1,6 @@
 import {store, component} from '../../../js/vendor/reef.es.js';
 
-let storageKey = 'w2p3CartItems';
+let storageKey = 'w3p1CartItems';
 
 /**
  * Get saved cart data from session storage
