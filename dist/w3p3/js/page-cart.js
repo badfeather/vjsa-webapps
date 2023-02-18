@@ -128,6 +128,7 @@ async function checkoutClickHandler (event) {
 
 		// Get the session data
 		let session = await sessionRequest.json();
+		console.log(session);
 
 		// Redirect to Stripe Checkout
 		window.location.href = session.url;
