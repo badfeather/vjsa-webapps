@@ -1,6 +1,6 @@
 {
   "name": "vjsa-webapps",
-  "version": "1.0.57",
+  "version": "1.0.61",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -49,6 +49,7 @@
     "reefjs": "^12.1.1",
     "rollup": "^3.7.4",
     "sass": "^1.49.7",
-    "terser": "^5.10.0"
+    "terser": "^5.10.0",
+    "wrangler": "^2.10.0"
   }
 }
