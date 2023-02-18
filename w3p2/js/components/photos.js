@@ -21,7 +21,7 @@ function getPhotoByID (id, photos) {
 	});
 }
 
-async function fetchPhotos (endpoint = 'https://vjsa-photos.bradthomason.workers.dev') {
+async function fetchPhotos (endpoint = 'https://worker-photos.bradthomason.workers.dev') {
 	if (!endpoint) return;
 
 	let saved = getSavedPhotos();

@@ -1,5 +1,5 @@
 import {render} from '../../js/vendor/reef.es.js';
-import {fetchPhotos} from './components/fetch-photos.js';
+import {fetchPhotos} from './components/photos.js';
 import './components/cart.js';
 
 let photos = [];

@@ -1,3 +1,5 @@
+import {photosURL} from './endpoints.js';
+
 /**
  * Save photos to session storage
  * @param  {Array} photos The photo data
@@ -5,7 +7,6 @@
 function savePhotos (photos) {
 	sessionStorage.setItem('photos', JSON.stringify(photos));
 }
-
 
 /**
  * Get saved photo data from session storage
@@ -15,8 +16,14 @@ function getSavedPhotos () {
 	return JSON.parse(sessionStorage.getItem('photos'));
 }
 
+function getPhotoByID (id, photos) {
+	if (!photos.length) return false;
+	return photos.find(function(item) {
+		return item.id === id;
+	});
+}
 
-async function fetchPhotos (endpoint = 'https://vanillajsacademy.com/api/photos.json') {
+async function fetchPhotos (endpoint = photosURL) {
 	if (!endpoint) return;
 
 	let saved = getSavedPhotos();
@@ -37,4 +44,4 @@ async function fetchPhotos (endpoint = 'https://vanillajsacademy.com/api/photos.
 	}
 }
 
-export {fetchPhotos};
+export {fetchPhotos, getPhotoByID};
