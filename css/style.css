@@ -840,6 +840,7 @@ input[type=search] {
 .cart th,
 .cart td {
   width: 9em;
+  text-align: left;
 }
 .cart button {
   font-size: var(--font-size--xs);
