@@ -97,7 +97,7 @@ async function checkoutClickHandler (event) {
 						description: photo.description,
 						images: [photo.url]
 					},
-					unit_amout: photo.price * 100
+					unit_amount: photo.price * 100
 				},
 				quantity: cartItem.qty
 			}
