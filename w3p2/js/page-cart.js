@@ -110,8 +110,6 @@ function deleteCartItemClickHandler (event) {
 function emptyCartClickHandler (event) {
 	let btn = event.target.closest('[data-empty-cart]');
 	if (!btn) return;
-	let id = btn.getAttribute('data-delete-item');
-	if (!id) return;
 	emptyCart();
 	let msg = `Cart emptied.`;
 	status.push(msg);
