@@ -146,7 +146,8 @@ function increaseCartItemQuantityClickHandler (event) {
 	if (!id) return;
 	increaseCartItemQuantity(id);
 	let photo = getPhotoByID(id, photos);
-	let msg = `1 "${photo.name}" added to your cart.`;
+	let cartItem = getCartItem(id);
+	let msg = `1 "${photo.name}" added to your cart. New Quantity: ${cartItem.qty}`;
 	status.push(msg);
 	setTimeout(function () {
 		status.splice(status.indexOf(msg), 1);
@@ -160,7 +161,8 @@ function decreaseCartItemQuantityClickHandler (event) {
 	if (!id) return;
 	decreaseCartItemQuantity(id);
 	let photo = getPhotoByID(id, photos);
-	let msg = `1 "${photo.name}" removed from your cart.`;
+	let cartItem = getCartItem(id);
+	let msg = `1 "${photo.name}" removed from your cart. New Quantity: ${cartItem.qty}`;
 	status.push(msg);
 	setTimeout(function () {
 		status.splice(status.indexOf(msg), 1);
