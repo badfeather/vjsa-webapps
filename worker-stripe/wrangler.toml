@@ -1,0 +1,12 @@
+name = "worker-stripe"
+main = "./index.js"
+compatibility_date = "2022-05-03"
+[vars]
+# ...
+
+# ...
+
+# The necessary secrets are:
+# - API_TOKEN
+# Run `echo <VALUE> | wrangler secret put <NAME>` for each of these
+

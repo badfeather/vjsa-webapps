@@ -1,3 +1,5 @@
+import {photosURL} from './endpoints.js';
+
 /**
  * Save photos to session storage
  * @param  {Array} photos The photo data
@@ -21,7 +23,7 @@ function getPhotoByID (id, photos) {
 	});
 }
 
-async function fetchPhotos (endpoint = 'https://worker-photos.bradthomason.workers.dev') {
+async function fetchPhotos (endpoint = photosURL) {
 	if (!endpoint) return;
 
 	let saved = getSavedPhotos();
