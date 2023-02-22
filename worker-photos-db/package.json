@@ -1,0 +1,12 @@
+{
+	"name": "worker-photos-db",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler publish index.js",
+		"dev": "wrangler dev index.js --local"
+	},
+	"devDependencies": {
+		"wrangler": "^2.0.0"
+	}
+}
