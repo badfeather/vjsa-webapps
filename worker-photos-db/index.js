@@ -10,6 +10,15 @@ async function handleRequest(request) {
 		'Access-Control-Allow-Headers': '*'
 	});
 
+	let allowed = ['https://badfeather.github.io', 'https://localhost:8080'];
+
+	if (!allowed.includes(request.headers.get('origin'))) {
+		return new Response('Not allowed', {
+			status: 403,
+			headers: headers
+		});
+	}
+
 	// If not a GET request, return generic response
 	if (request.method !== 'GET') {
 		return new Response('ok', {
