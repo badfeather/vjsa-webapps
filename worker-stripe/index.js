@@ -34,6 +34,13 @@ function buildQuery (data, prefix) {
 
 }
 
+function getPhotoByID (id, photos) {
+	if (!photos.length) return false;
+	return photos.find(function(item) {
+		return item.id === id;
+	});
+}
+
 /**
  * Respond to the request
  * @param {Request} request
@@ -68,7 +75,29 @@ async function handleRequest(request) {
 
 		// Get the request data
 		let body = await request.json();
-		let {line_items, success_url, cancel_url} = body;
+		let {cart_items, success_url, cancel_url} = body;
+
+		// let photos = await PHOTOS.get('photos');
+		let photos = await PHOTOS.get('photos', {type: 'json'});
+
+		let line_items = [];
+		for (let item of cart_items) {
+			let photo = getPhotoByID(item.id, photos);
+			line_items.push(
+				{
+					price_data: {
+						currency: 'usd',
+						product_data: {
+							name: photo.name,
+							description: photo.description,
+							images: [photo.url]
+						},
+						unit_amount: photo.price * 100
+					},
+					quantity: item.qty
+				}
+			);
+		}
 
 		// Call the Stripe API
 		let stripeRequest = await fetch('https://api.stripe.com/v1/checkout/sessions', {

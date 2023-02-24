@@ -1,6 +1,9 @@
 name = "worker-stripe"
 main = "./index.js"
 compatibility_date = "2022-05-03"
+kv_namespaces = [
+  { binding = "PHOTOS", id = "7d6b49581ba9476d9adf950151ce096f" }
+]
 [vars]
 
 # The necessary secrets are:

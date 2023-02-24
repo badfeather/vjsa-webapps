@@ -7,7 +7,8 @@ import {
 	decreaseCartItemQuantity,
 	deleteCartItem,
 	emptyCart,
-	getCartItem
+	getCartItem,
+	// getCartData
 } from './components/cart.js';
 
 let photos = [],
@@ -87,20 +88,20 @@ async function checkoutClickHandler (event) {
 		return;
 	}
 	let stripeData = {
-		line_items: photosInCart.map(function (photo) {
-			let cartItem = getCartItem(photo.id);
-			return {
-				price_data: {
-					currency: 'usd',
-					product_data: {
-						name: photo.name,
-						description: photo.description,
-						images: [photo.url]
-					},
-					unit_amount: photo.price * 100
-				},
-				quantity: cartItem.qty
-			}
+		cart_items: photosInCart.map(function (photo) {
+			return getCartItem(photo.id);
+			// return {
+			// 	price_data: {
+			// 		currency: 'usd',
+			// 		product_data: {
+			// 			name: photo.name,
+			// 			description: photo.description,
+			// 			images: [photo.url]
+			// 		},
+			// 		unit_amount: photo.price * 100
+			// 	},
+			// 	quantity: cartItem.qty
+			// }
 		}),
 		success_url: successURL,
 		cancel_url: currentURL
@@ -195,7 +196,7 @@ function emptyCartClickHandler (event) {
 	}, 3000);
 }
 
-fetchPhotos(false).then(function (data) {
+fetchPhotos().then(function (data) {
 	photos = data;
 	let app = document.querySelector('[data-app]');
 	if (app) component(app, getCartHTML);
