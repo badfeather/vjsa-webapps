@@ -85,5 +85,5 @@ function getCartCountHTML () {
 let count = document.querySelector('[data-cart-count]');
 if (count) component(count, getCartCountHTML);
 
-export {increaseCartItemQuantity, decreaseCartItemQuantity, deleteCartItem, emptyCart, getCartDetails, getCartItem};
+export {increaseCartItemQuantity, decreaseCartItemQuantity, deleteCartItem, emptyCart, getCartDetails, getCartData, getCartItem};
 
