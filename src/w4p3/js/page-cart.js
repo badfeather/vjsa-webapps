@@ -2,13 +2,13 @@ import {component, store} from '../../js/vendor/reef.es.js';
 import {fetchPhotos, getPhotoByID} from './components/photos.js';
 import {stripeURL} from './components/endpoints.js';
 import {
-	// getCartDetails,
 	increaseCartItemQuantity,
 	decreaseCartItemQuantity,
 	deleteCartItem,
 	emptyCart,
 	getCartItem,
-	// getCartData
+	getCartQueryString,
+	restoreCartDataFromURL
 } from './components/cart.js';
 
 let photos = [],
@@ -76,10 +76,6 @@ function getCartHTML () {
 async function checkoutClickHandler (event) {
 	let btn = event.target.closest('[data-checkout]');
 	if (!btn) return;
-	let currentURL = window.location.href;
-	let successURL = currentURL.replace("/cart/", "/success/");
-
-	console.log(currentURL, successURL);
 
 	let photosInCart = photos.filter(function (photo) {
 		return getCartItem(photo.id);
@@ -93,6 +89,9 @@ async function checkoutClickHandler (event) {
 		status.push( 'No items in cart' );
 		return;
 	}
+
+	let currentURL = window.location.href + getCartQueryString(),
+		successURL = currentURL.replace("/cart/", "/success/");
 
 	let stripeData = {
 		cart_items: cartItems,
@@ -123,6 +122,7 @@ async function checkoutClickHandler (event) {
 		// Get the session data
 		let session = await sessionRequest.json();
 		console.log(session);
+		// emptyCart();
 
 		// Redirect to Stripe Checkout
 		window.location.href = session.url;
@@ -191,6 +191,7 @@ function emptyCartClickHandler (event) {
 
 fetchPhotos().then(function (data) {
 	photos = data;
+	restoreCartDataFromURL();
 	let app = document.querySelector('[data-app]');
 	if (app) component(app, getCartHTML);
 	document.addEventListener('click', function (event) {

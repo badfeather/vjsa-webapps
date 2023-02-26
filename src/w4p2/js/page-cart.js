@@ -78,31 +78,24 @@ async function checkoutClickHandler (event) {
 	if (!btn) return;
 	let currentURL = window.location.href;
 	let successURL = currentURL.replace("/cart/", "/success/");
+
 	console.log(currentURL, successURL);
 
 	let photosInCart = photos.filter(function (photo) {
 		return getCartItem(photo.id);
 	});
+
+	let cartItems = photosInCart.map(function (photo) {
+		return getCartItem(photo.id);
+	});
+
 	if ( ! photosInCart.length ) {
 		status.push( 'No items in cart' );
 		return;
 	}
+
 	let stripeData = {
-		cart_items: photosInCart.map(function (photo) {
-			return getCartItem(photo.id);
-			// return {
-			// 	price_data: {
-			// 		currency: 'usd',
-			// 		product_data: {
-			// 			name: photo.name,
-			// 			description: photo.description,
-			// 			images: [photo.url]
-			// 		},
-			// 		unit_amount: photo.price * 100
-			// 	},
-			// 	quantity: cartItem.qty
-			// }
-		}),
+		cart_items: cartItems,
 		success_url: successURL,
 		cancel_url: currentURL
 	}
