@@ -2,7 +2,7 @@
 <html class="no-js" lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Home | Week 2, Project 3 - View Cart</title>
+	<title>Login | Week 5, Project 1 - Login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="/vjsa-webapps/img/favicon.ico" sizes="any">
 	<link rel="icon" href="/vjsa-webapps/img/icon.svg" type="image/svg+xml">
@@ -20,19 +20,34 @@
 		<main class="site-content">
 			<article class="article">
 	<header class="article-header">
-		<h1>Home | Week 2, Project 3 - View Cart</h1>
+		<h1>Login | Week 5, Project 1 - Login</h1>
 	</header>
 
 	<div class="article-content">
 		
 <nav class="nav">
-	<p><a class="logo" href="./"><strong>Sparrow Photography</strong></a></p>
+	<p><a class="logo" href="../"><strong>Sparrow Photography</strong></a></p>
 	<div class="nav-items">
-		<a class="btn" href="cart/">Cart <span data-cart-count></span></a>
+		<a class="btn" href="../cart/">Cart <span data-cart-count></span></a>
 	</div>
 </nav>
 
-<div data-app aria-live="polite">Loading...</div>
+<h1>Login</h1>
+<form data-form="login">
+	<p>
+	<label for="username">Username*</label>
+	<input type="text" name="username" id="username" required>
+	</p>
+
+	<p>
+	<label for="password">Password*</label>
+	<input type="password" name="password" id="password" required>
+	</p>
+
+	<p><button>Login</button></p>
+
+	<div data-form-status role="status" aria-live="polite"></div>
+</form>
 
 <footer>
 	<p><em>Photos by Jack Sparrow. All rights reserved.</em></p>
@@ -41,11 +56,8 @@
 	</div>
 
 	
-		<p><strong>File:</strong> <a href="js/index.js">js/index.js</a></p>
-		<pre data-src="js/index.js"></pre>
-	
-		<p><strong>File:</strong> <a href="js/components/fetch-photos.js">js/components/fetch-photos.js</a></p>
-		<pre data-src="js/components/fetch-photos.js"></pre>
+		<p><strong>File:</strong> <a href="../js/page-login.js">../js/page-login.js</a></p>
+		<pre data-src="../js/page-login.js"></pre>
 	
 </article>
 
@@ -55,7 +67,7 @@
 	<script src="/vjsa-webapps/js/scripts.min.js"></script>
 	
 	
-		<script src="js/index.js" type="module"></script>
+		<script src="../js/page-login.js" type="module"></script>
 	
 </body>
 </html>
