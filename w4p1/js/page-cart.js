@@ -49,7 +49,7 @@ function getCartHTML () {
 			<td class="item-thumb"><img alt="${photo.description}" src="${photo.url}"></td>
 			<td class="item-name"><strong>${photo.name}</strong></td>
 			<td class="item-cost-per-unit">${photo.price}</td>
-			<td class="item-qty"><button class="adjust-qty" data-decrease-item-qty="${item.id}" aria-label="Decrease item quantity">-</button> ${item.qty} <button class="adjust-qty" data-increase-item-qty="${item.id}" aria-label="Increase item quantity">+</button> <button class="delete-item" data-delete-item="${item.id}" aria-label="Delete item">X</button></td>
+			<td class="item-qty"><button class="adjust-qty" data-decrease-item-qty="${item.id}" aria-label="Decrease quantity of '${photo.name}' photo by 1">-</button> ${item.qty} <button class="adjust-qty" data-increase-item-qty="${item.id}" aria-label="Increase quantity of '${photo.name}' photo by 1">+</button> <button class="delete-item" data-delete-item="${item.id}" aria-label="Remove '${photo.name}' photo from cart">X</button></td>
 			<td class="item-price">$${rowPrice}</td>
 		</tr>
 		`;
