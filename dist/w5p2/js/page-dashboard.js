@@ -26,6 +26,7 @@ async function logoutClickHandler (event) {
 }
 
 let token = getToken();
+console.log('Token: ' + token);
 if (!token) window.location.href = getNewURLPath('login');
 
 // Otherwise, listen for click events on the logout link

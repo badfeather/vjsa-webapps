@@ -24,6 +24,7 @@ async function submitHandler (event) {
 
 		if (!response.ok) throw response;
 		let {token} = await response.json();
+		console.log(token);
 		setToken(token);
 		status.innerText = `Success! Redirecting to dashboard.`;
 		window.location.href = getNewURLPath('dashboard');
@@ -35,7 +36,9 @@ async function submitHandler (event) {
 	}
 }
 
-if (getToken()) {
+let storedToken = getToken();
+if (storedToken) {
+	console.log('stored token: ' + storedToken);
 	window.location.href = getNewURLPath('dashboard');
 }
 let form = document.querySelector('[data-form="login"]');
