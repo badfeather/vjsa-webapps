@@ -1,0 +1,16 @@
+---
+title: Dashboard | Week 5, Project 2 - Save Login State
+layout: layouts/post.njk
+jsmodules: ['../js/page-dashboard.js']
+printfiles: ['../js/page-dashboard.js', '../js/components/token.js', '../js/components/helpers.js', '../js/components/endpoints.js']
+---
+
+<nav class="nav">
+	<p><a class="logo" href="{{ './' | url }}"><strong>Sparrow Photography</strong></a></p>
+	<div class="nav-items">
+		<a href="{{ '../login/' | url }}" data-loginout="logout">Logout</a>
+	</div>
+</nav>
+
+<h1>Dashboard</h1>
+<p>You're logged in...</p>

@@ -1,0 +1,8 @@
+name = "worker-users"
+main = "./index.js"
+compatibility_date = "2022-05-03"
+kv_namespaces = [
+  { binding = "USERS", id = "b47adb522acb4ed59b70cf704457fa7f" },
+  { binding = "TOKENS", id = "d744d69b2cee4670a009a8d2c8ed5117" }
+]
+

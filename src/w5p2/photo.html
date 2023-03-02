@@ -1,0 +1,20 @@
+---
+title: Photo | Week 5, Project 2 - Save Login State
+layout: layouts/post.njk
+jsmodules: ['../js/page-photo.js']
+printfiles: ['../js/page-photo.js', '../js/components/photos.js', '../js/components/cart.js']
+---
+
+<nav class="nav">
+	<p><a class="logo" href="{{ '../' | url }}"><strong>Sparrow Photography</strong></a></p>
+	<div class="nav-items">
+		<a class="btn" href="{{ '../cart/' | url }}">Cart <span data-cart-count></span></a>
+	</div>
+</nav>
+
+<p><a href="{{ '../' | url }}">&larr; All Photos</a></p>
+<div data-app aria-live="polite">Loading...</div>
+
+<footer>
+	<p><em>Photos by Jack Sparrow. All rights reserved.</em></p>
+</footer>
