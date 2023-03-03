@@ -1,19 +1,5 @@
+import {serialize, getNewURLPath} from './components/helpers.js';
 import {authURL} from './components/endpoints.js';
-
-function serialize (data) {
-	let obj = {};
-	for (let [key, value] of data) {
-		if (obj[key] !== undefined) {
-			if (!Array.isArray(obj[key])) {
-				obj[key] = [obj[key]];
-			}
-			obj[key].push(value);
-		} else {
-			obj[key] = value;
-		}
-	}
-	return obj;
-}
 
 async function submitHandler (event) {
 	event.preventDefault();
@@ -28,16 +14,16 @@ async function submitHandler (event) {
 	let auth = btoa(`${username}:${password}`);
 
 	try {
-		let login = await fetch(authURL, {
-			method: 'POST',
+		let response = await fetch(authURL, {
+			method: 'PUT',
 			headers: {
 				'Authorization': `Basic ${auth}`
 			}
 		});
 
-		if (!login.ok) throw login;
-		let {token} = await login.json();
-		status.innerText = `Success! Your authentication token is: ${token}`;
+		if (!response.ok) throw response;
+		status.innerText = `New user credentials created! Log in using your new credentials.`;
+		window.location.href = getNewURLPath('login');
 
 	} catch (error) {
 		form.reset();
@@ -46,7 +32,7 @@ async function submitHandler (event) {
 	}
 }
 
-let form = document.querySelector('[data-form]');
+let form = document.querySelector('[data-form="signup"]');
 let status = document.querySelector('[data-form-status]');
 
 if (form && status) form.addEventListener('submit', submitHandler);

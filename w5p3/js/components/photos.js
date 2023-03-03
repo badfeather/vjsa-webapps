@@ -46,4 +46,4 @@ async function fetchPhotos (useSaved = true, endpoint = photosURL) {
 	}
 }
 
-export {fetchPhotos, getPhotoByID};
+export {fetchPhotos, savePhotos, getPhotoByID};

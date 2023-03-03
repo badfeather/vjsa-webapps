@@ -1,19 +1,6 @@
+import {setToken, getToken} from './components/token.js';
+import {serialize, getNewURLPath} from './components/helpers.js';
 import {authURL} from './components/endpoints.js';
-
-function serialize (data) {
-	let obj = {};
-	for (let [key, value] of data) {
-		if (obj[key] !== undefined) {
-			if (!Array.isArray(obj[key])) {
-				obj[key] = [obj[key]];
-			}
-			obj[key].push(value);
-		} else {
-			obj[key] = value;
-		}
-	}
-	return obj;
-}
 
 async function submitHandler (event) {
 	event.preventDefault();
@@ -28,16 +15,19 @@ async function submitHandler (event) {
 	let auth = btoa(`${username}:${password}`);
 
 	try {
-		let login = await fetch(authURL, {
+		let response = await fetch(authURL, {
 			method: 'POST',
 			headers: {
 				'Authorization': `Basic ${auth}`
 			}
 		});
 
-		if (!login.ok) throw login;
-		let {token} = await login.json();
-		status.innerText = `Success! Your authentication token is: ${token}`;
+		if (!response.ok) throw response;
+		let {token} = await response.json();
+		console.log(token);
+		setToken(token);
+		status.innerText = `Success! Redirecting to dashboard.`;
+		window.location.href = getNewURLPath('dashboard');
 
 	} catch (error) {
 		form.reset();
@@ -46,7 +36,12 @@ async function submitHandler (event) {
 	}
 }
 
-let form = document.querySelector('[data-form]');
+let storedToken = getToken();
+if (storedToken) {
+	console.log('stored token: ' + storedToken);
+	window.location.href = getNewURLPath('dashboard');
+}
+let form = document.querySelector('[data-form="login"]');
 let status = document.querySelector('[data-form-status]');
 
 if (form && status) form.addEventListener('submit', submitHandler);

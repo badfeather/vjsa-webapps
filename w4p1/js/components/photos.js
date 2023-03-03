@@ -1,4 +1,4 @@
-import {photosDBURL} from './endpoints.js';
+import {photosURL} from './endpoints.js';
 
 /**
  * Save photos to session storage
@@ -23,7 +23,7 @@ function getPhotoByID (id, photos) {
 	});
 }
 
-async function fetchPhotos (endpoint = photosDBURL) {
+async function fetchPhotos (endpoint = photosURL) {
 	if (!endpoint) return;
 
 	let saved = getSavedPhotos();
