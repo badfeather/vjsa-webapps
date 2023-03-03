@@ -1,0 +1,7 @@
+name = "worker-dashboard"
+main = "./index.js"
+compatibility_date = "2022-05-03"
+kv_namespaces = [
+  { binding = "PHOTOS", id = "7d6b49581ba9476d9adf950151ce096f" },
+  { binding = "TOKENS", id = "d744d69b2cee4670a009a8d2c8ed5117" }
+]

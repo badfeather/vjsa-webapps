@@ -1,5 +1,4 @@
-
-import {dummyAuthURL} from './components/endpoints.js';
+import {authURL} from './components/endpoints.js';
 
 function serialize (data) {
 	let obj = {};
@@ -29,7 +28,7 @@ async function submitHandler (event) {
 	let auth = btoa(`${username}:${password}`);
 
 	try {
-		let login = await fetch(dummyAuthURL, {
+		let login = await fetch(authURL, {
 			method: 'POST',
 			headers: {
 				'Authorization': `Basic ${auth}`
