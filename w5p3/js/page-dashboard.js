@@ -32,9 +32,9 @@ function getDashboardHTML () {
 	let html = `
 	<table class="dashboard">
 		<tr>
+			<th class="photo-thumb">Image</th>
 			<th class="photo-id">ID</th>
 			<th class="photo-name">Title</th>
-			<th class="photo-url">Image URL</th>
 			<th class="photo-description">Description</th>
 			<th class="photo-price">Price($)</th>
 		</tr>
@@ -43,9 +43,9 @@ function getDashboardHTML () {
 		let {id, name, url, description, price} = photo;
 		html += `
 		<tr>
+			<td class="photo-thumb"><img src="${url}" alt="${description}" /></td>
 			<td class="photo-id">${id}</td>
 			<td class="photo-name">${name}</td>
-			<td class="photo-url">${url}</td>
 			<td class="photo-description">${description}</td>
 			<td class="photo-price">$${price}</td>
 		</tr>
