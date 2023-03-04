@@ -1,2 +1,2 @@
 # Vanilla JS Academy - Web Apps
-Version: 1.0.108
+Version: 1.0.109
