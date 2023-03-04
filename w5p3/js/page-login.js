@@ -36,9 +36,9 @@ async function submitHandler (event) {
 	}
 }
 
-let storedToken = getToken();
-if (storedToken) {
-	console.log('stored token: ' + storedToken);
+let token = getToken();
+if (token) {
+	console.log('stored token: ' + token);
 	window.location.href = getNewURLPath('dashboard');
 }
 let form = document.querySelector('[data-form="login"]');
