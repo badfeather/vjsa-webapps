@@ -1,13 +1,3 @@
-// Headers
-// Change origin if desired
-let headers = new Headers({
-	'Access-Control-Allow-Origin': '*',
-	'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
-	'Access-Control-Allow-Headers': '*'
-});
-
-let allowed = ['https://badfeather.github.io', 'https://localhost:8080'];
-
 /**
  * Check if token is for a valid session
  * @param  {String}  token The session token
@@ -28,6 +18,14 @@ async function isLoggedIn (token) {
  * @param {Request} request
  */
 async function handleRequest(request) {
+	let headers = new Headers({
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
+		'Access-Control-Allow-Headers': '*'
+	});
+
+	let allowed = ['https://badfeather.github.io', 'https://localhost:8080'];
+
 	if (!allowed.includes(request.headers.get('origin'))) {
 		return new Response('Not allowed', {
 			status: 403,

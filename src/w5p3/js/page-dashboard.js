@@ -2,38 +2,33 @@ import {component, store} from '../../js/vendor/reef.es.js';
 import {getToken, removeToken} from './components/token.js';
 import {getNewURLPath} from './components/helpers.js';
 import {authURL} from './components/endpoints.js';
-import {fetchAuthPhotos} from './components/admin.js';
+import {fetchAuthPhotos} from './components/dashboard.js';
 
 let photos = [],
 	token = getToken();
 
-console.log('Token: ' + token);
 if (!token) window.location.href = getNewURLPath('login');
 
-async function logoutClickHandler (event) {
+function logoutClickHandler (event) {
 	let link = event.target.closest('[data-loginout="logout"]');
 	if (!link) return;
 	event.preventDefault();
 	link.textContent = 'Logging out...';
 
-	try {
-		let response = await fetch(authURL, {
-			method: 'DELETE',
-			headers: {
-				'Authorization': `Bearer ${token}`
-			}
-		});
+	fetch(authURL, {
+		method: 'DELETE',
+		headers: {
+			'Authorization': `Bearer ${token}`
+		}
+	});
 
-		if (!response.ok) throw response;
-		removeToken();
-		window.location.href = getNewURLPath('login');
-
-	} catch (error) {
-		console.warn(error);
-	}
+	removeToken();
+	window.location.href = getNewURLPath('login');
 }
 
 function getDashboardHTML () {
+	if (!photos.length) return '<p>Sorry, there are no photos.</p>';
+
 	let html = `
 	<table class="dashboard">
 		<tr>
@@ -66,7 +61,7 @@ document.addEventListener('click', logoutClickHandler);
 
 fetchAuthPhotos().then(function (data) {
 	let app = document.querySelector('[data-app]');
-	if (!app || !data.length) return;
+	if (!app) return;
 	photos = store(data);
 	component(app, getDashboardHTML);
 });
