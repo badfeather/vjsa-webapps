@@ -1,0 +1,21 @@
+---
+title: Success | Week 6, Project 1 - Edit a Photo API
+layout: layouts/post.njk
+jsmodules: ['../js/page-success.js']
+printfiles: ['../js/page-success.js', '../js/components/cart.js', '../js/components/photos.js']
+---
+
+<nav class="nav">
+	<p><a class="logo" href="{{ '../' | url }}"><strong>Sparrow Photography</strong></a></p>
+	<div class="nav-items">
+		<a class="btn" href="{{ '../cart/' | url }}">Cart <span data-cart-count></span></a>
+	</div>
+</nav>
+
+<h1>Checkout Complete</h1>
+<p>Thanks for your purchase!</p>
+<div data-app aria-live="polite"></div>
+
+<footer>
+	<p><em>Photos by Jack Sparrow. All rights reserved.</em></p>
+</footer>

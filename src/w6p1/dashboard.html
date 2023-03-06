@@ -1,0 +1,17 @@
+---
+title: Dashboard | Week 6, Project 1 - Edit a Photo API
+layout: layouts/post.njk
+jsmodules: ['../js/page-dashboard.js']
+printfiles: ['../js/page-dashboard.js', '../js/components/token.js', '../js/components/helpers.js', '../js/components/endpoints.js', '../js/components/dashboard.js']
+---
+
+<nav class="nav">
+	<p><a class="logo" href="{{ './' | url }}"><strong>Sparrow Photography</strong></a></p>
+	<div class="nav-items">
+		<a href="{{ '../login/' | url }}" data-loginout>Logout</a>
+	</div>
+</nav>
+
+<h1>Dashboard</h1>
+<div data-app aria-live="polite">You're logged in. Loading...</div>
+
