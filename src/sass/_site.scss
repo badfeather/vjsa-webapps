@@ -29,6 +29,9 @@ body {
 	margin-bottom: 0;
 }
 
+[data-form-status] {
+	margin-bottom: var(--spacing);
+}
 
 .projects {
 	list-style: none;
