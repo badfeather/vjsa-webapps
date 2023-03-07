@@ -27,6 +27,18 @@ function getNewURLPath(newPath, url) {
 }
 
 /**
+ * Sanitize and encode all HTML in a user-submitted string
+ * https://portswigger.net/web-security/cross-site-scripting/preventing
+ * @param {String} str The user-submitted string
+ * @return {String} str The sanitized string
+ */
+function sanitizeHTML (str) {
+	return str.replace(/javascript:/gi, '').replace(/[^\w-_. ]/gi, function (c) {
+		return `&#${c.charCodeAt(0)};`;
+	});
+}
+
+/**
  * Create a PHP-style query string from an object
  * @param  {Object} data   The data to serialize into a string
  * @param  {String} prefix The prefix to use before the string
@@ -62,4 +74,4 @@ function buildQuery (data, prefix) {
 
 }
 
-export { serialize, getCleanURL, getNewURLPath, buildQuery };
+export { serialize, getCleanURL, getNewURLPath, sanitizeHTML, buildQuery };

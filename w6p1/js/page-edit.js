@@ -4,45 +4,41 @@ import {dashURL} from './components/endpoints.js';
 import {getPhotoByID} from './components/photos.js';
 import {serialize} from './components/helpers.js';
 import {fetchAuthPhotos} from './components/dashboard.js';
+import {sanitizeHTML} from './components/helpers.js';
 import './components/logout.js';
 
 let photos = [],
 	token = getToken(),
-	photo;
+	photo,
+	status;
 
 function getEditHTML () {
 	if (!photo.length)  '<p>Error retrieving photo.</p>';
 	let {id, name, url, description, price} = photo;
+	console.log
 	let html = `
 	<form data-edit-photo="${id}">
 		<p>
-		<label for="photo_id">Photo ID (lowercase with dashes)</label>
-		<input type="text" name="photo_id" id="photo_id" value="${id}" required>
+		<label for="url">Photo URL</label>
+		<input type="url" name="url" id="url" value="${url}" equired>
 		</p>
 
 		<p>
-		<label for="photo_url">Photo URL</label>
-		<input type="url" name="photo_url" id="photo_url" value="${url}" equired>
+		<label for="name">Title</label>
+		<input type="text" name="name" id="name" value="${name}" required>
 		</p>
 
 		<p>
-		<label for="photo_name">Title</label>
-		<input type="text" name="photo_name" id="photo_name" value="${name}" required>
+		<label for="description">Description</label>
+		<input type="text" name="description" id="description" value="${description}" required>
 		</p>
 
 		<p>
-		<label for="photo_description">Description</label>
-		<input type="text" description="photo_description" id="photo_description" value="${description}" required>
-		</p>
-
-		<p>
-		<label for="photo_price">Price (in dollars)</label>
-		<input type="text" price="photo_price" id="photo_price" value="${price}" required>
+		<label for="price">Price (in dollars)</label>
+		<input type="text" name="price" id="price" value="${price}" required>
 		</p>
 
 		<p><button>Update</button></p>
-
-		<div data-form-status role="status" aria-live="polite"></div>
 	</form>
 	`;
 	return html;
@@ -52,23 +48,28 @@ async function submitHandler (event) {
 	let form = event.target.closest('[data-edit-photo]');
 	if (!form) return;
 	event.preventDefault();
-	let status = form.querySelector('[data-form-status]');
 	if (form.hasAttribute('data-submitting')) return;
-	let {photo_id, photo_url, photo_name, photo_description, photo_price} = serialize(new FormData(form));
+	let formData = serialize(new FormData(form));
+	console.log(formData);
+	let {url, name, description, price} = formData;
+	url = sanitizeHTML(url);
+	name = sanitizeHTML(name);
+	description = sanitizeHTML(description);
+	price = sanitizeHTML(price);
 
-	let match = getPhotoByID(photo_id, photos);
-	if (match.id !== photo_id) match.id = photo_id;
-	if (match.url !== photo_url) match.url = photo_url;
-	if (match.name !== photo_name) match.name = photo_name;
-	if (match.description !== photo_description) match.description = photo_description;
-	if (match.price !== photo_price) match.price = photo_price;
+	if (photo.url !== url) photo.url = url;
+	if (photo.name !== name) photo.name = name;
+	if (photo.description !== description) photo.description = description;
+	if (photo.price !== price) photo.price = price;
+
+	console.log(photo);
 
 	form.setAttribute('data-submitting', true);
 
 	try {
 		let response = await fetch(`${dashURL}?token=${token}`, {
 			method: 'PUT',
-			body: JSON.stringify(match),
+			body: JSON.stringify(photo),
 			headers: {
 				'Content-type': 'application/json',
 				'Authorization': `Bearer ${token}`,
@@ -82,18 +83,19 @@ async function submitHandler (event) {
 
 	} catch (error) {
 		form.removeAttribute('data-submitting');
+		console.log(error);
 		status.innerText = 'Something went wrong. Please try again.';
 	}
 }
 
 fetchAuthPhotos().then(function (data) {
 	let app = document.querySelector('[data-app]');
+	status = document.querySelector('[data-form-status]');
 	let id = new URL(window.location.href).searchParams.get('id');
-	if (!app || !id) return;
+	if (!app || !status || !id) return;
 	photos = store(data);
 	photo = getPhotoByID(id, photos);
 	if (!photo) return;
-
 	component(app, getEditHTML);
 	document.addEventListener('submit', submitHandler);
 });
