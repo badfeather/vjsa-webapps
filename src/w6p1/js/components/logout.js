@@ -3,8 +3,9 @@ import {getToken, removeToken} from './token.js';
 import {getNewURLPath, getCleanURL} from './helpers.js';
 
 let token = getToken();
+let loginURL = getNewURLPath('login', getCleanURL());
 if (!token) {
-	window.location.href = getNewURLPath('login', getCleanURL());
+	window.location.href = loginURL;
 }
 
 function logoutClickHandler (event) {
@@ -21,7 +22,7 @@ function logoutClickHandler (event) {
 	});
 
 	removeToken();
-	window.location.href = getNewURLPath('login', getCleanURL());
+	window.location.href = loginURL;
 }
 
 document.addEventListener('click', logoutClickHandler);
