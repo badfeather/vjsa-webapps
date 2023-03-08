@@ -15,7 +15,9 @@ function serialize (data) {
 
 function getCleanURL(url) {
 	url = url ? url : window.location.href;
-	return url.substring(0, url.indexOf('?') - 1);
+	let q = url.indexOf('?');
+	if (q < 0) return url;
+	return url.substring(0, q - 1);
 }
 
 function getNewURLPath(newPath, url) {
