@@ -1,4 +1,8 @@
-import {setToken, getToken} from './components/token.js';
+import {
+	setToken,
+	// getToken,
+	removeToken
+} from './components/token.js';
 import {serialize, getCleanURL, getNewURLPath} from './components/helpers.js';
 import {authURL} from './components/endpoints.js';
 
@@ -27,7 +31,7 @@ async function submitHandler (event) {
 		console.log(token);
 		setToken(token);
 		status.innerText = `Success! Redirecting to dashboard.`;
-		window.location.href = getNewURLPath('dashboard');
+		window.location.href = getNewURLPath('dashboard', getCleanURL());
 
 	} catch (error) {
 		form.reset();
@@ -36,11 +40,12 @@ async function submitHandler (event) {
 	}
 }
 
-let token = getToken();
-if (token) {
-	console.log('stored token: ' + token);
-	window.location.href = getNewURLPath('dashboard', getCleanURL());
-}
+removeToken();
+// let token = getToken();
+// if (token) {
+// 	console.log('stored token: ' + token);
+// 	window.location.href = getNewURLPath('dashboard', getCleanURL());
+// }
 let form = document.querySelector('[data-form="login"]');
 let status = document.querySelector('[data-form-status]');
 
