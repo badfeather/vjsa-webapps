@@ -21,7 +21,7 @@ function logoutClickHandler (event) {
 	});
 
 	removeToken();
-	window.location.href = getNewURLPath('login', getCleanURL());
+	// window.location.href = getNewURLPath('login', getCleanURL());
 }
 
 document.addEventListener('click', logoutClickHandler);
