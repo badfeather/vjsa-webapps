@@ -20,7 +20,7 @@ function getEditHTML () {
 	<form data-edit-photo="${id}">
 		<p>
 		<label for="url">Photo URL</label>
-		<input type="url" name="url" id="url" value="${url}" equired>
+		<input type="url" name="url" id="url" value="${url}" required>
 		</p>
 
 		<p>

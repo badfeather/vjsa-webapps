@@ -1,0 +1,27 @@
+---
+title: Edit | Week 6, Project 2 - Edit a Photo UI
+layout: layouts/post.njk
+jsmodules: ['../js/page-edit.js']
+printfiles: [
+	'../js/page-edit.js',
+	'../js/components/token.js',
+	'../js/components/endpoints.js',
+	'../js/components/photos.js',
+	'../js/components/helpers.js',
+	'../js/components/dashboard.js',
+	'../js/components/logout.js'
+]
+---
+
+<nav class="nav">
+	<p><a class="logo" href="{{ '../' | url }}"><strong>Sparrow Photography</strong></a></p>
+	<div class="nav-items">
+		<a href="{{ '../login/' | url }}" data-loginout="logout">Logout</a>
+	</div>
+</nav>
+
+<p><a href="{{ '../dashboard/' | url }}">Return to Dashboard</a></p>
+<h1>Edit</h1>
+<div data-app aria-live="polite">Loading...</div>
+
+
