@@ -17,11 +17,13 @@ function getDashboardHTML () {
 			<th class="photo-description">Description</th>
 			<th class="photo-price">Price($)</th>
 			<th class="photo-edit"></th>
+			<th class="photo-delete"></th>
 		</tr>
 	`;
 	for (let photo of photos) {
 		let {id, name, url, description, price} = photo;
 		let editURL = `${getNewURLPath('edit')}?id=${encodeURIComponent(id)}`;
+		let deleteURL = `${getNewURLPath('delete')}?id=${encodeURIComponent(id)}`;
 		html += `
 		<tr>
 			<td class="photo-thumb"><img src="${url}" alt="${description}" /></td>
@@ -30,6 +32,7 @@ function getDashboardHTML () {
 			<td class="photo-description">${description}</td>
 			<td class="photo-price">$${price}</td>
 			<td class="photo-edit"><a href="${editURL}" data-edit-photo>Edit</a></td>
+			<td class="photo-delete"><a href="${deleteURL}" data-delete-photo>Delete</a></td>
 		</tr>
 		`;
 	}

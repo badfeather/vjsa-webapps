@@ -133,6 +133,104 @@ async function handlePUT (request) {
 }
 
 /**
+ * Handle POST requests
+ * @param  {Request}  request The request object
+ * @return {Response}         The response object
+ */
+async function handlePOST (request) {
+	// Get photos from database
+	let photos = await PHOTOS.get('photos', {type: 'json'});
+	let photo = await request.json();
+	let {id, name, description, price} = photo;
+
+	// If there are missing details, return an error
+	if (!id || !name || !description || !price) {
+		return new Response('Please provide all required data', {
+			status: 400,
+			headers: headers
+		});
+	}
+
+	// Make sure price is a number
+	price = parseFloat(price);
+	if (Number.isNaN(price)) {
+		return new Response('Price must be a valid number', {
+			status: 400,
+			headers: headers
+		});
+	}
+
+	photos.push(photo);
+	let updated = await PHOTOS.put('photos', JSON.stringify(photos));
+
+	// If update failed
+	if (updated === null) {
+		return new Response('Unable to update. Please try again.', {
+			status: 500,
+			headers: headers
+		});
+	}
+
+	// return a Response object
+	return new Response('Photo updated', {
+		status: 200,
+		headers: headers
+	});
+
+}
+
+/**
+ * Handle DELETE requests
+ * @param  {Request}  request The request object
+ * @return {Response}         The response object
+ */
+async function handleDELETE (request) {
+
+	// Get photos from database
+	let photos = await PHOTOS.get('photos', {type: 'json'});
+
+	// Get the photo details
+	let id = await request.text();
+
+	// If there are missing details, return an error
+	if (!id) {
+		return new Response('No photo id provided in request.', {
+			status: 400,
+			headers: headers
+		});
+	}
+
+	// Get the photo index
+	let index = getPhotoIndexByID(photos, id);
+
+	// If there's no matching photo, return an error
+	if (index < 0) {
+		return new Response('Photo not found', {
+			status: 404,
+			headers: headers
+		});
+	}
+
+	photos.splice(index, 1);
+	let updated = await PHOTOS.put('photos', JSON.stringify(photos));
+
+	// If update failed
+	if (updated === null) {
+		return new Response('Unable to delete. Please try again.', {
+			status: 500,
+			headers: headers
+		});
+	}
+
+	// return a Response object
+	return new Response('Photo deleted', {
+		status: 200,
+		headers: headers
+	});
+
+}
+
+/**
  * Respond to the request
  * @param {Request} request
  */
@@ -174,6 +272,16 @@ async function handleRequest(request) {
 	// PUT requests
 	if (request.method === 'PUT') {
 		return await handlePUT(request);
+	}
+
+	// POST requests
+	if (request.method === 'POST') {
+		return await handlePOST(request);
+	}
+
+	// DELETE requests
+	if (request.method === 'DELETE') {
+		return await handleDELETE(request);
 	}
 
 	// Everything else

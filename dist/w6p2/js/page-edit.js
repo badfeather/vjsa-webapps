@@ -2,9 +2,8 @@ import {component, store} from '../../js/vendor/reef.es.js';
 import {getToken} from './components/token.js';
 import {dashURL} from './components/endpoints.js';
 import {getPhotoByID} from './components/photos.js';
-import {serialize} from './components/helpers.js';
+import {serialize, sanitizeHTML} from './components/helpers.js';
 import {fetchAuthPhotos} from './components/dashboard.js';
-import {sanitizeHTML} from './components/helpers.js';
 import './components/logout.js';
 
 let photos = [],
