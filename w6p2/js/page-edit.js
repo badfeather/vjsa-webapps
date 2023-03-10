@@ -13,7 +13,7 @@ let photos = [],
 
 function getEditHTML () {
 	if (!photo) {
-		formStatus.value = '<p>Error retrieving photo.</p>';
+		formStatus.value = 'Error retrieving photo.';
 		return;
 	}
 	let {id, name, url, description, price} = photo;
