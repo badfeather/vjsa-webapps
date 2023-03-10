@@ -1,0 +1,29 @@
+---
+title: Login | Week 6, Project 3 - Add a New Photo
+layout: layouts/post.njk
+jsmodules: ['../js/page-login.js']
+printfiles: ['../js/page-login.js', '../js/components/token.js', '../js/components/helpers.js', '../js/components/endpoints.js']
+---
+
+<nav class="nav">
+	<p><a class="logo" href="{{ '../' | url }}"><strong>Sparrow Photography</strong></a></p>
+</nav>
+
+<h1>Login</h1>
+<form data-form="login">
+	<p>
+	<label for="username">Username*</label>
+	<input type="text" name="username" id="username" required>
+	</p>
+
+	<p>
+	<label for="password">Password*</label>
+	<input type="password" name="password" id="password" required>
+	</p>
+
+	<p><button>Login</button></p>
+
+	<div data-form-status role="status" aria-live="polite"></div>
+</form>
+
+<p>Don't have an account? <a href="{{ '../signup/' | url }}">Create account</a>.</p>

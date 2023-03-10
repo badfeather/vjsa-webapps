@@ -1,0 +1,26 @@
+---
+title: Delete | Week 6, Project 3 - Add a New Photo
+layout: layouts/post.njk
+jsmodules: ['../js/page-delete.js']
+printfiles: [
+	'../js/page-delete.js',
+	'../js/components/token.js',
+	'../js/components/endpoints.js',
+	'../js/components/photos.js',
+	'../js/components/dashboard.js',
+	'../js/components/logout.js'
+]
+---
+
+<nav class="nav">
+	<p><a class="logo" href="{{ '../' | url }}"><strong>Sparrow Photography</strong></a></p>
+	<div class="nav-items">
+		<a href="{{ '../login/' | url }}" data-loginout="logout">Logout</a>
+	</div>
+</nav>
+
+<p><a href="{{ '../dashboard/' | url }}">Return to Dashboard</a></p>
+<h2 data-title>Delete Photo</h2>
+<div data-app aria-live="polite">Loading...</div>
+
+

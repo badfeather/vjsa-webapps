@@ -1,0 +1,31 @@
+---
+title: Create Account | Week 6, Project 3 - Add a New Photo
+layout: layouts/post.njk
+
+jsmodules: ['../js/page-signup.js']
+printfiles: ['../js/page-signup.js', '../js/components/helpers.js', '../js/components/endpoints.js']
+---
+
+<nav class="nav">
+	<p><a class="logo" href="{{ '../' | url }}"><strong>Sparrow Photography</strong></a></p>
+</nav>
+
+<h2>Create Account</h2>
+<form data-form="signup">
+	<p>
+	<label for="username">Username*</label>
+	<input type="text" name="username" id="username" required>
+	</p>
+
+	<p>
+	<label for="password">Password*</label>
+	<input type="password" name="password" id="password" required>
+	</p>
+
+	<p><button>Create account</button></p>
+
+	<div data-form-status role="status" aria-live="polite"></div>
+</form>
+
+<p>Already have an account? <a href="{{ '../login/' | url }}">Go to login</a>.</p>
+

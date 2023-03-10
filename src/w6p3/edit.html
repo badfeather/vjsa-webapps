@@ -1,12 +1,13 @@
 ---
-title: Delete | Week 6, Project 2 - Edit a Photo UI
+title: Edit | Week 6, Project 3 - Add a New Photo
 layout: layouts/post.njk
-jsmodules: ['../js/page-delete.js']
+jsmodules: ['../js/page-edit.js']
 printfiles: [
-	'../js/page-delete.js',
+	'../js/page-edit.js',
 	'../js/components/token.js',
 	'../js/components/endpoints.js',
 	'../js/components/photos.js',
+	'../js/components/helpers.js',
 	'../js/components/dashboard.js',
 	'../js/components/logout.js'
 ]
@@ -20,7 +21,7 @@ printfiles: [
 </nav>
 
 <p><a href="{{ '../dashboard/' | url }}">Return to Dashboard</a></p>
-<h1>Delete Photo</h1>
+<h2 data-title>Edit</h2>
 <div data-app aria-live="polite">Loading...</div>
 
 
