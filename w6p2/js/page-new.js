@@ -2,9 +2,8 @@ import {component, store} from '../../js/vendor/reef.es.js';
 import {getToken} from './components/token.js';
 import {dashURL} from './components/endpoints.js';
 // import {getPhotoByID} from './components/photos.js';
-import {serialize, getNewURLPath, getCleanURL} from './components/helpers.js';
+import {serialize, getNewURLPath, getCleanURL, sanitizeHTML} from './components/helpers.js';
 // import {fetchAuthPhotos} from './components/dashboard.js';
-import {sanitizeHTML} from './components/helpers.js';
 import './components/logout.js';
 
 let token = getToken(),
@@ -13,7 +12,7 @@ let token = getToken(),
 
 function getNewHTML () {
 	let html = `
-	<form data-edit-photo>
+	<form data-new-photo>
 		<p>
 		<label for="url">Photo URL</label>
 		<input type="url" name="url" id="url" required>
@@ -34,7 +33,7 @@ function getNewHTML () {
 		<input type="text" name="price" id="price" required>
 		</p>
 
-		<p><button>Update photo</button></p>
+		<p><button>Add photo</button></p>
 
 		<p role="status">${formStatus.value}</p>
 	</form>
@@ -43,7 +42,7 @@ function getNewHTML () {
 }
 
 async function submitHandler (event) {
-	let form = event.target.closest('[data-edit-photo]');
+	let form = event.target.closest('[data-new-photo]');
 	if (!form) return;
 	event.preventDefault();
 	if (form.hasAttribute('data-submitting')) return;
